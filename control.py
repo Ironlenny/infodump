@@ -5,9 +5,14 @@ import logger
 
 class Controller():
 
-    def __init__(self, filename='infodump.db', locking=0, local=1):
+    def __init__(self, configDict):
         super(Controller, self).__init__()
-        self.info = db.DB(filename, locking, local)
+        #lint:disable
+        self.filename = configDict[Database][DatabasePath]
+        self.locking = configDict[Database][Locking]
+        self.local = configDict[Database][LocalMem]
+        #lint:enable
+        self.info = db.DB(self.filename, self.locking, self.local)
 
     def _split_tags(self, tags):
         return tags.lower().split(', ')
