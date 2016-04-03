@@ -3,3 +3,6 @@ __pycache__/*
 test.py
 *.nja
 *.conf
+*.kdev4
+.kdev4/
+*.db
