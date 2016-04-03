@@ -7,11 +7,9 @@ class Controller():
 
     def __init__(self, configDict):
         super(Controller, self).__init__()
-        #lint:disable
-        self.filename = configDict[Database][DatabasePath]
-        self.locking = configDict[Database][Locking]
-        self.local = configDict[Database][LocalMem]
-        #lint:enable
+        self.filename = configDict['Database']['DatabasePath']
+        self.locking = configDict['Database'].getboolean('Locking')
+        self.local = configDict['Database'].getboolean('LocalMem')
         self.info = db.DB(self.filename, self.locking, self.local)
 
     def _split_tags(self, tags):

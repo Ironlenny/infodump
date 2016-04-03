@@ -125,6 +125,7 @@ class DB():
             for i in keySet:
                 tagLink = tmpTags[i][0]  # Get link record
 
+                # TODO: Move loop to _update_tag()
                 # For each link in tag record, compare with note data. If match,
                 # replace with None.
                 for j in range(2, tagLink.get_size()):
