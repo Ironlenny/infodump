@@ -12,14 +12,10 @@ class Controller():
         self.local = configDict['Database'].getboolean('LocalMem')
         self.info = db.DB(self.filename, self.locking, self.local)
 
-    def _split_tags(self, tags):
-        return tags.lower().split(', ')
-
     def save_note(self, text, tags):
-        if tags is not str:
-            raise TypeError ('TypeError: tags is not a string')
+        if tags is not list:
+            raise TypeError ('TypeError: tags is not a list')
 
-        tags = self._split_tags(tags)
         try:
             return self.info.create_note(text, tags)
         except TypeError as err:
