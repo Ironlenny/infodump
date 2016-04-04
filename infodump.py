@@ -7,7 +7,6 @@ import cli
 from OpenGL import GL
 
 def main():
-    mainCLI = cli.CLI()
-
+    controller = cli.cli()
 
 main()
