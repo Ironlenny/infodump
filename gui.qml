@@ -6,7 +6,7 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: qsTr("InfoDump")
 
     menuBar: MenuBar {
         Menu {
@@ -21,6 +21,12 @@ ApplicationWindow {
 //                onTriggered: messageRequired;
             }
         }
+        Menu {
+	  title: qsTr('Edit')
+	  MenuItem { action: copyAction }
+	  MenuItem { action: cutAction }
+	  MenuItem { action: pastAction }
+	}
     }
 
     ColumnLayout {
@@ -51,4 +57,5 @@ ApplicationWindow {
         }
     }
 }
+
 
