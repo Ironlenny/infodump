@@ -23,7 +23,8 @@ class DB():
         self.recCount = 0
         # Serialization aids, metadata, data
         # TODO: Change 'meta' to 0 and 'id' to 1, so notes and tags share the same structure.
-        self.Field = enum.Enum('Field', {'id': 0, 'time': 1, 'meta': 2, 'data': 3, 'tags': 4, 'tagName': 1})
+        self.Field = enum.Enum('Field', {'id': 0, 'time': 1, 'meta': 2, 
+                                         'data': 3, 'tags': 4, 'tagName': 1})
         self.dbFile = shelve.open(filename)
 
     # TODO: Move all expections here
@@ -110,7 +111,8 @@ class DB():
                 addTags = tags - keySet
                 rmTags = keySet - tags
                 recTime = self.Field.time.value
-                self._update_disk(note.get_field(recID), note.get_field(recTime), note.get_field(meta), data, tags)
+                self._update_disk(note.get_field(recID), note.get_field(recTime)
+                                  , note.get_field(meta), data, tags)
 
                 # TODO: Move loop into _update_tag()
                 for i, tag in enumerate(rmTags):
@@ -119,8 +121,10 @@ class DB():
         # If update bigger than current. Create new, update links, delete old
         else:
             recTime = time.time()
-            self._update_disk(note.get_field(recID), recTime, note.get_field(meta), data, tags)
-            updatedNote = self._create_note(note.get_field(meta), data, list(tags), note.get_field(recID), recTime)
+            self._update_disk(note.get_field(recID), recTime,
+                            note.get_field(meta), data, tags)
+            updatedNote = self._create_note(note.get_field(meta),
+                             data, list(tags), note.get_field(recID), recTime)
 
             for i in keySet:
                 tagLink = tmpTags[i][0]  # Get link record

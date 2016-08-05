@@ -13,7 +13,7 @@ class Controller():
         self.info = db.DB(self.filename, self.locking, self.local)
 
     def save_note(self, text, tags):
-        if tags is not list:
+        if not isinstance(tags, list):
             raise TypeError ('TypeError: tags is not a list')
 
         try:
